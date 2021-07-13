@@ -1,0 +1,4 @@
+spring.application.name: sample-spring-jpa-streamer
+
+spring.jpa.show-sql: true
+spring.jpa.properties.hibernate.format_sql: true
