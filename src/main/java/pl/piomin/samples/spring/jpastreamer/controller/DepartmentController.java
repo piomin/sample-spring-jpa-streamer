@@ -11,6 +11,7 @@ import pl.piomin.samples.spring.jpastreamer.model.Department;
 import pl.piomin.samples.spring.jpastreamer.model.Department$;
 import pl.piomin.samples.spring.jpastreamer.model.Employee;
 import pl.piomin.samples.spring.jpastreamer.model.Organization;
+import pl.piomin.samples.spring.jpastreamer.repository.DepartmentRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -20,36 +21,24 @@ import java.util.stream.Collectors;
 @RequestMapping("/departments")
 public class DepartmentController {
 
-    private final JPAStreamer streamer;
+    private final DepartmentRepository repository;
 
-    public DepartmentController(JPAStreamer streamer) {
-        this.streamer = streamer;
+    public DepartmentController(DepartmentRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping
     public List<DepartmentDTO> findAll() {
-        return streamer.stream(Department.class)
-                .sorted(Department$.name)
-                .map(DepartmentDTO::new)
-                .collect(Collectors.toList());
+        return repository.findAll();
     }
 
     @GetMapping("/{id}/count-employees")
     public long getNumberOfEmployees(@PathVariable("id") Integer id) {
-        return streamer.stream(Department.class)
-                .filter(Department$.id.equal(id))
-                .map(Department::getEmployees)
-                .mapToLong(Set::size)
-                .sum();
+        return repository.getNumberOfEmployees(id);
     }
 
     @GetMapping("/{id}/employees")
     public List<EmployeeDTO> getEmployees(@PathVariable("id") Integer id) {
-        return streamer.stream(Department.class)
-                .filter(Department$.id.equal(id))
-                .map(Department::getEmployees)
-                .flatMap(Set::stream)
-                .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+        return repository.getEmployees(id);
     }
 }

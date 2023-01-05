@@ -11,6 +11,7 @@ import pl.piomin.samples.spring.jpastreamer.dto.EmployeeDTO;
 import pl.piomin.samples.spring.jpastreamer.dto.EmployeeWithDetailsDTO;
 import pl.piomin.samples.spring.jpastreamer.model.Employee;
 import pl.piomin.samples.spring.jpastreamer.model.Employee$;
+import pl.piomin.samples.spring.jpastreamer.repository.EmployeeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,39 +20,25 @@ import java.util.stream.Collectors;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    private final JPAStreamer streamer;
+    private final EmployeeRepository repository;
 
-    public EmployeeController(JPAStreamer streamer) {
-        this.streamer = streamer;
+    public EmployeeController(EmployeeRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/greater-than/{salary}")
     public List<EmployeeDTO> findBySalaryGreaterThan(@PathVariable("salary") int salary) {
-        return streamer.stream(Employee.class)
-                .filter(Employee$.salary.greaterThan(salary))
-                .sorted(Employee$.salary)
-                .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+        return findBySalaryGreaterThan(salary);
     }
 
     @GetMapping("/offset/{offset}/limit/{limit}")
     public List<EmployeeDTO> findAllWithPagination(@PathVariable("offset") int offset,
                                                    @PathVariable("limit") int limit) {
-        return streamer.stream(Employee.class)
-                .skip(offset)
-                .limit(limit)
-                .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+        return repository.findAllWithPagination(offset, limit);
     }
 
     @GetMapping("/{id}")
     public EmployeeWithDetailsDTO findById(@PathVariable("id") Integer id) {
-        return streamer.stream(of(Employee.class)
-                    .joining(Employee$.department)
-                    .joining(Employee$.organization))
-                .filter(Employee$.id.equal(id))
-                .map(EmployeeWithDetailsDTO::new)
-                .findFirst()
-                .orElseThrow();
+        return repository.findById(id);
     }
 }
