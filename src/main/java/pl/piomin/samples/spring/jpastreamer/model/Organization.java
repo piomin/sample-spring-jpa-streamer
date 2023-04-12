@@ -1,11 +1,10 @@
 package pl.piomin.samples.spring.jpastreamer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
