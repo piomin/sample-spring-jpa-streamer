@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
         <jpastreamer.version>3.0.1</jpastreamer.version>
         <sonar.projectKey>piomin_sample-spring-jpa-streamer</sonar.projectKey>
         <sonar.organization>piomin</sonar.organization>
