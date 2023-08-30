@@ -15,7 +15,7 @@
 
     <properties>
         <java.version>20</java.version>
-        <jpastreamer.version>3.0.3</jpastreamer.version>
+        <jpastreamer.version>3.0.4</jpastreamer.version>
         <sonar.projectKey>piomin_sample-spring-jpa-streamer</sonar.projectKey>
         <sonar.organization>piomin</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
