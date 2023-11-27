@@ -24,15 +24,14 @@ public class DepartmentRepository {
         return streamer.stream(Department.class)
                 .sorted(Department$.name)
                 .map(DepartmentDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public long getNumberOfEmployees(Integer id) {
         return streamer.stream(Department.class)
                 .filter(Department$.id.equal(id))
                 .map(Department::getEmployees)
-                .mapToLong(Set::size)
-                .sum();
+                .count();
     }
 
     public List<EmployeeDTO> getEmployees(Integer id) {
@@ -41,7 +40,7 @@ public class DepartmentRepository {
                 .map(Department::getEmployees)
                 .flatMap(Set::stream)
                 .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }
