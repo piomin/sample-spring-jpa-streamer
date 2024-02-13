@@ -13,7 +13,7 @@ jobs:
 executors:
   jdk:
     docker:
-      - image: 'cimg/openjdk:21.0'
+      - image: 'cimg/openjdk:21.0.2'
 
 orbs:
   maven: circleci/maven@1.4.1
