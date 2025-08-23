@@ -26,7 +26,7 @@ public class EmployeeRepository {
                 .filter(Employee$.salary.greaterThan(salary))
                 .sorted(Employee$.salary)
                 .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<EmployeeDTO> findAllWithPagination(final int offset,
@@ -35,7 +35,7 @@ public class EmployeeRepository {
                 .skip(offset)
                 .limit(limit)
                 .map(EmployeeDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public EmployeeWithDetailsDTO findById(final Integer id) {
