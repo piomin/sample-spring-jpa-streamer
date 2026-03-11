@@ -7,6 +7,8 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=piomin_sample-spring-jpa-streamer&metric=coverage)](https://sonarcloud.io/dashboard?id=piomin_sample-spring-jpa-streamer)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=piomin_sample-spring-jpa-streamer&metric=ncloc)](https://sonarcloud.io/dashboard?id=piomin_sample-spring-jpa-streamer)
 
-In this project I'm demonstrating you the most interesting features of [JPAstreamer](https://jpastreamer.org/) for expressing JPA/Hibernate/Spring queries using standard Java streams.
+> :warning: JPAStreamer is no longer developed by the community. Therefore, the following example repository won't be updated anymore.
 
-The details has been described in the article: [Express JPA Queries as Java Streams](https://piotrminkowski.com/2021/07/13/express-jpa-queries-as-java-streams/)
+In this project, I'm demonstrating the most interesting features of [JPAstreamer](https://jpastreamer.org/) for expressing JPA/Hibernate/Spring queries using standard Java streams.
+
+The details have been described in the article: [Express JPA Queries as Java Streams](https://piotrminkowski.com/2021/07/13/express-jpa-queries-as-java-streams/)
